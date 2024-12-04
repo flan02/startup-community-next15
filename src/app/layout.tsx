@@ -15,6 +15,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// * Metadata for the entire app
 export const metadata: Metadata = {
   title: "ProjectPulse 🎄",
   description: "Discover, share, and explore innovative projects to inspire your next big idea",
@@ -23,6 +24,20 @@ export const metadata: Metadata = {
     url: "https://www.danchanivet.tech"
   },
 };
+
+// * Dynamic Metadata we'll get a dynamic object with the params for each page
+/*
+export async function generateMetadata({ params }: { params: any }){
+  const { id } = params;
+  const resource = await getResourceById({ id })
+
+  return {
+    title: resource.title,
+    description: resource.description,
+    image: resource.image,
+  }
+}
+*/
 
 export default function RootLayout({
   children,
