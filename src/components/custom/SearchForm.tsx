@@ -2,7 +2,12 @@ import Form from "next/form";
 import SearchFormReset from "@/components/custom/SearchFormReset";
 import { Search } from "lucide-react";
 
-const SearchForm = ({ query }: { query?: string }) => {
+type SearchFormProps = {
+  query?: string
+}
+
+const SearchForm = ({ query }: SearchFormProps) => {
+  // query = 'Test'
   return (
     <Form action="/" scroll={false} className="search-form">
       <input
@@ -13,8 +18,10 @@ const SearchForm = ({ query }: { query?: string }) => {
       />
 
       <div className="flex gap-2">
-        {query && <SearchFormReset />}
-
+        {/* Custom client component will reset our form */}
+        {
+          query && <SearchFormReset />
+        }
         <button type="submit" className="search-btn text-white">
           <Search className="size-5" />
         </button>

@@ -12,7 +12,7 @@ const Navbar = async () => {
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
       <nav className="flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-2">
-          <LucideOctagon fill="red" size={32} /> <span className="text-red-500 font-bold text-xl">PROJECT PULSE</span>
+          <LucideOctagon fill="#8A2BE2" size={32} color="" /> <span className="text-primary font-bold text-2xl">PROJECT PULSE</span>
           {/* <Image src="/logo.png" alt="logo" width={144} height={30} /> */}
         </Link>
 
