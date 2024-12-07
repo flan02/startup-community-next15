@@ -3,12 +3,14 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-// import { Author, Startup } from "@/sanity/types";
+import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// type Omit<T,K> : Construct a type with the props of T except for thos in type K
+// type Omit<T, K> = Pick<T, Exclude<keyof T, K>>; // This is the same as the Omit type
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = ({ post }: StartupTypeCard) => {
+const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const { _createdAt, views, author, title, category, _id, image, description } = post;
 
   return (

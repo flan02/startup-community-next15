@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --path=./src/sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@10.5.2",
   "overrides": {
@@ -21,6 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.465.0",
+    "markdown-it": "^14.1.0",
     "next": "15.0.3",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.3-canary.1",
@@ -28,6 +32,7 @@
     "react-dom": "19.0.0-rc-2d16326d-20240930",
     "sanity": "^3.66.0",
     "sanity-plugin-markdown": "^5.0.0",
+    "server-only": "^0.0.1",
     "slugify": "^1.6.6",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.5",
@@ -36,6 +41,7 @@
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -1,4 +1,4 @@
-import Ping from "@/components/Ping";
+import Ping from "@/components/custom/Ping";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
 import { writeClient } from "@/sanity/lib/write-client";

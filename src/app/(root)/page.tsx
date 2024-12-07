@@ -1,9 +1,8 @@
 import SearchForm from "@/components/custom/SearchForm";
 import StartupCard, { StartupTypeCard } from "@/components/custom/StartupCard";
 import { auth } from "../../../auth";
-
-// import { STARTUPS_QUERY } from "@/sanity/lib/queries";
-// import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 
 type searchParamsProps = {
@@ -14,12 +13,13 @@ export default async function Home({ searchParams }: searchParamsProps) {
   const query = (await searchParams).query;
   const params = { search: query || null };
   const session = await auth();
-  console.log(session?.user?.id);
+  // console.log(session?.user?.id);
 
+  // const posts = await client.fetch(STARTUPS_QUERY);
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
-  // const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
-
-  // * Dummy data only for example purpose
+  /*
+  ** Dummy data only for example purpose
   const posts: StartupTypeCard = [
     {
       _createdAt: new Date(),
@@ -32,6 +32,8 @@ export default async function Home({ searchParams }: searchParamsProps) {
       title: "We Robots"
     }
   ]
+  */
+  // console.log(JSON.stringify(posts, null, 2));
 
   return (
     <>
@@ -57,8 +59,8 @@ export default async function Home({ searchParams }: searchParamsProps) {
         <ul className="mt-7 card_grid">
           {
             posts?.length > 0 ? (
-              posts.map((post: StartupTypeCard, i: any) => (
-                <StartupCard key={i} post={post} />
+              posts.map((post: StartupTypeCard) => (
+                <StartupCard key={post?._id} post={post} />
               ))
             ) : (
               <p className="no-results">No startups found</p>
@@ -66,10 +68,10 @@ export default async function Home({ searchParams }: searchParamsProps) {
           }
         </ul>
       </section>
-      {/* 
-          
+
+
       <SanityLive />
-          */}
+
     </>
   );
 }
