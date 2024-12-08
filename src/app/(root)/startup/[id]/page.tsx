@@ -13,9 +13,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/custom/View";
 import StartupCard, { StartupTypeCard } from "@/components/custom/StartupCard";
 
-const md = markdownit();
+const md = markdownit(); // Markdown parser
 
-export const experimental_ppr = true;
+export const experimental_ppr = true; // We can use this to enable PPR for this page
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
@@ -29,7 +29,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (!post) return notFound();
 
-  const parsedContent = md.render(post?.pitch || "");
+  const parsedContent = md.render(post?.pitch || ""); // Parse the pitch content from markdown to HTML
 
   return (
     <>
@@ -42,7 +42,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
       <section className="section_container">
         <img
-          src={post.image}
+          src={post.image!}
           alt="thumbnail"
           className="w-full h-auto rounded-xl"
         />
@@ -54,7 +54,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               className="flex gap-2 items-center mb-3"
             >
               <Image
-                src={post.author.image}
+                src={post.author?.image!}
                 alt="avatar"
                 width={64}
                 height={64}
@@ -62,9 +62,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               />
 
               <div>
-                <p className="text-20-medium">{post.author.name}</p>
+                <p className="text-20-medium">{post.author?.name}</p>
                 <p className="text-16-medium !text-black-300">
-                  @{post.author.username}
+                  @{post.author?.username}
                 </p>
               </div>
             </Link>
@@ -73,29 +73,34 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
 
           <h3 className="text-30-bold">Pitch Details</h3>
-          {parsedContent ? (
-            <article
-              className="prose max-w-4xl font-work-sans break-all"
-              dangerouslySetInnerHTML={{ __html: parsedContent }}
-            />
-          ) : (
-            <p className="no-result">No details provided</p>
-          )}
+          {
+            parsedContent ? (
+              <article
+                className="prose max-w-4xl font-work-sans break-all"
+                dangerouslySetInnerHTML={{ __html: parsedContent }}
+              />
+            ) : (
+              <p className="no-result">No details provided</p>
+            )
+          }
         </div>
 
         <hr className="divider" />
 
-        {editorPosts?.length > 0 && (
-          <div className="max-w-4xl mx-auto">
-            <p className="text-30-semibold">Editor Picks</p>
+        { /* EDITOR SELECTED STARTUPS */}
+        {
+          editorPosts?.length > 0 && (
+            <div className="max-w-4xl mx-auto">
+              <p className="text-30-semibold">Editor Picks</p>
 
-            <ul className="mt-7 card_grid-sm">
-              {editorPosts.map((post: StartupTypeCard, i: number) => (
-                <StartupCard key={i} post={post} />
-              ))}
-            </ul>
-          </div>
-        )}
+              <ul className="mt-7 card_grid-sm">
+                {editorPosts.map((post: StartupTypeCard, i: number) => (
+                  <StartupCard key={i} post={post} />
+                ))}
+              </ul>
+            </div>
+          )
+        }
 
         <Suspense fallback={<Skeleton className="view_skeleton" />}>
           <View id={id} />

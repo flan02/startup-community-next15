@@ -13,7 +13,19 @@ const nextConfig: NextConfig = {
         hostname: "media.licdn.com",
       }
     ],
-  },
+  }
 };
 
 export default nextConfig;
+
+/* 
+experimental: {
+    ppr: 'incremental'
+  },
+  devIndicators: {
+    appIsrStatus: true,
+    buildActivity: true,
+    buildActivityPosition: 'bottom-right'
+  }
+
+*/
