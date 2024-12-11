@@ -21,3 +21,13 @@ Sanity is a headless CMS that allows you to define your own data structure and t
 ```ts
 import MDEditor from "@uiw/react-md-editor";
 ```
+
+**useActionState.**
+
+```ts
+// useActionState is a hook that allows you to update state based on the result of a form action
+[state, formAction, isPending] = useActionState(fn, initState, permalink?)
+
+// Server actions will automatically reset the form on submission, which is nice sometimes, but also not always what you want.
+
+```

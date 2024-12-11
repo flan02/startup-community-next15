@@ -13,6 +13,6 @@ export function formatDate(date: string) {
   });
 }
 
-export function parseServerActionResponse<T>(response: T) {
+export function parseServerActionResponse<T>(response: T) { // T means generic type
   return JSON.parse(JSON.stringify(response));
 }
