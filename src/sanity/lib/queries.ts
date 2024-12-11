@@ -79,6 +79,9 @@ views,
 description,
 category,
 image,
+_type,
+_updatedAt,
+_rev
 }`);
 
 export const PLAYLIST_BY_SLUG_QUERY =
